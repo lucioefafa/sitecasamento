@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casamento Lúcio e Rafaela</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            color: #333;
+        }
+        header {
+            position: relative;
+            height: 100vh;
+            background: url('a.JPEG') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+        }
+        header h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin: 0;
+        }
+        header .countdown {
+            font-size: 1.5em;
+            margin-top: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #6C63FF;
+        }
+        section {
+            min-height: 100vh;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        section:nth-child(even) {
+            background: #f9f9f9;
+        }
+        #lista-de-presentes, #confirmacao-presenca, #mural-recados {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h2 {
+            font-size: 2.2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        footer {
+            background: #6C63FF;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        .button {
+            padding: 10px 30px;
+            font-size: 1em;
+            color: white;
+            background: #6C63FF;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+        .button:hover {
+            background: #4A47D5;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#lista-de-presentes">Lista de Presentes</a></li>
+            <li><a href="#confirmacao-presenca">Confirmação de Presença</a></li>
+            <li><a href="#mural-recados">Mural de Recados</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Casamento Lúcio e Rafaela</h1>
+        <div class="countdown" id="countdown"></div>
+    </header>
+
+    <section id="lista-de-presentes">
+        <h2>Lista de Presentes</h2>
+        <p>Veja nossa lista de presentes e nos ajude a tornar este dia ainda mais especial!</p>
+        <button class="button">Acesse a Lista</button>
+    </section>
+
+    <section id="confirmacao-presenca">
+        <h2>Confirmação de Presença</h2>
+        <p>Confirme sua presença no nosso grande dia. Estamos ansiosos para te ver!</p>
+        <button class="button">Confirmar Presença</button>
+    </section>
+
+    <section id="mural-recados">
+        <h2>Mural de Recados</h2>
+        <p>Deixe uma mensagem especial para nós. Vamos adorar ler seus recados!</p>
+        <button class="button">Deixe seu Recado</button>
+    </section>
+
+    <footer>
+        <p>Com carinho, Lúcio e Rafaela &copy; 2025</p>
+    </footer>
+
+    <script>
+        // Data do casamento
+        const weddingDate = new Date("2025-10-04T16:00:00");
+
+        function updateCountdown() {
+            const now = new Date();
+            const timeRemaining = weddingDate - now;
+
+            if (timeRemaining <= 0) {
+                document.getElementById("countdown").innerText = "O grande dia chegou!";
+                return;
+            }
+
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerText = 
+                `${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Scroll suave ao clicar nos links
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
